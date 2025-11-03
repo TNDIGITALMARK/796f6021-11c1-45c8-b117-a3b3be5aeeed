@@ -1,0 +1,437 @@
+/* Enhanced Editor Mode Helper CSS - Advanced component inspection */
+
+/* Base overlay styles */
+.__ed-overlay { 
+  position: fixed; 
+  pointer-events: none; 
+  border: 2px dashed; 
+  border-radius: 4px; 
+  transition: all 120ms ease-out;
+  z-index: 999999;
+  box-sizing: border-box;
+}
+
+/* Hover state - cyber blue with glow */
+.__ed-hover { 
+  border-color: #00d9ff; 
+  border-style: dashed;
+  box-shadow: 
+    0 0 0 1px rgba(0, 217, 255, 0.3),
+    0 0 8px rgba(0, 217, 255, 0.4),
+    inset 0 0 8px rgba(0, 217, 255, 0.1);
+  background: rgba(0, 217, 255, 0.03);
+  animation: __ed-hover-glow 2s ease-in-out infinite alternate;
+}
+
+/* Selection state - neon green with pulse */
+.__ed-select { 
+  border-color: #00ff88; 
+  border-style: dashed;
+  box-shadow: 
+    0 0 0 1px rgba(0, 255, 136, 0.4),
+    0 0 12px rgba(0, 255, 136, 0.6),
+    inset 0 0 12px rgba(0, 255, 136, 0.1);
+  background: rgba(0, 255, 136, 0.05);
+  animation: __ed-select-pulse 1.5s ease-in-out infinite;
+}
+
+/* Tag label (like "div" in the reference) */
+.__ed-tag-label {
+  position: absolute;
+  top: -32px;
+  left: -2px;
+  background: linear-gradient(135deg, #00d9ff, #0099cc);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font: bold 11px/1.2 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 1000002;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Terminal-style tooltip with detailed info */
+.__ed-tooltip {
+  position: fixed; 
+  pointer-events: none; 
+  padding: 12px 16px; 
+  font: 12px/1.4 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a); 
+  color: #00ff88; 
+  border-radius: 8px; 
+  transform: translateY(-12px);
+  transition: all 200ms ease-out; 
+  opacity: 0.95;
+  z-index: 1000000;
+  min-width: 280px;
+  max-width: 400px;
+  white-space: pre-line;
+  border: 2px solid #00ff88;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 255, 136, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Terminal prompt style */
+.__ed-tooltip::before {
+  content: '> ';
+  color: #00d9ff;
+  font-weight: bold;
+}
+
+/* Detailed component info sections */
+.__ed-tooltip-section {
+  margin: 8px 0;
+  padding: 4px 0;
+  border-left: 2px solid #00d9ff;
+  padding-left: 8px;
+}
+
+.__ed-tooltip-label {
+  color: #00d9ff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.__ed-tooltip-value {
+  color: #ffffff;
+  margin-left: 8px;
+}
+
+/* Hierarchy indicators for nested components */
+.__ed-hierarchy-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ff6600;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font: bold 9px/1 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  z-index: 1000003;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide overlays when editor mode is disabled */
+body:not(.__editor-active) .__ed-overlay,
+body:not(.__editor-active) .__ed-tooltip,
+body:not(.__editor-active) .__ed-tag-label,
+body:not(.__editor-active) .__ed-hierarchy-indicator {
+  display: none !important;
+}
+
+/* Enhanced animations */
+@keyframes __ed-hover-glow {
+  0% { 
+    box-shadow: 
+      0 0 0 1px rgba(0, 217, 255, 0.3),
+      0 0 8px rgba(0, 217, 255, 0.4),
+      inset 0 0 8px rgba(0, 217, 255, 0.1);
+  }
+  100% { 
+    box-shadow: 
+      0 0 0 1px rgba(0, 217, 255, 0.5),
+      0 0 16px rgba(0, 217, 255, 0.6),
+      inset 0 0 16px rgba(0, 217, 255, 0.2);
+  }
+}
+
+@keyframes __ed-select-pulse {
+  0%, 100% { 
+    border-color: #00ff88;
+    box-shadow: 
+      0 0 0 1px rgba(0, 255, 136, 0.4),
+      0 0 12px rgba(0, 255, 136, 0.6),
+      inset 0 0 12px rgba(0, 255, 136, 0.1);
+  }
+  50% { 
+    border-color: #44ffaa;
+    box-shadow: 
+      0 0 0 2px rgba(0, 255, 136, 0.6),
+      0 0 20px rgba(0, 255, 136, 0.8),
+      inset 0 0 20px rgba(0, 255, 136, 0.2);
+  }
+}
+
+/* Multi-level selection indicators */
+.__ed-overlay-level-1 { border-width: 2px; }
+.__ed-overlay-level-2 { border-width: 3px; opacity: 0.8; }
+.__ed-overlay-level-3 { border-width: 4px; opacity: 0.6; }
+
+/* Component type indicators */
+.__ed-overlay[data-component-type="button"] { border-color: #ff4081; }
+.__ed-overlay[data-component-type="input"] { border-color: #9c27b0; }
+.__ed-overlay[data-component-type="nav"] { border-color: #ff9800; }
+.__ed-overlay[data-component-type="header"] { border-color: #4caf50; }
+.__ed-overlay[data-component-type="section"] { border-color: #2196f3; }
+
+/* Loading/scanning animation */
+.__ed-scanning {
+  animation: __ed-scan 2s linear infinite;
+}
+
+@keyframes __ed-scan {
+  0% {
+    border-color: #666;
+    opacity: 0.3;
+  }
+  50% {
+    border-color: #00d9ff;
+    opacity: 1;
+  }
+  100% {
+    border-color: #666;
+    opacity: 0.3;
+  }
+}
+
+/* NEW: Context button styles */
+.__phoenix-context-button {
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  z-index: 2147483646;
+  pointer-events: auto;
+  box-shadow:
+    0 2px 8px rgba(59, 130, 246, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease-out;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+.__phoenix-context-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 12px rgba(59, 130, 246, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.__phoenix-context-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 1px 4px rgba(59, 130, 246, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Context button fade in animation */
+.__phoenix-context-button {
+  animation: contextButtonFadeIn 0.2s ease-out;
+}
+
+@keyframes contextButtonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Visual indicator for elements in context */
+[data-context-added] {
+  position: relative;
+}
+
+[data-context-added]::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  background: rgba(34, 197, 94, 0.9);
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 999998;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Feedback animations for context actions */
+@keyframes contextCheckmarkPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Text editing cursor indicator */
+[data-phoenix-id][data-has-text="true"]:hover {
+  cursor: text;
+}
+
+/* ===== NEW: Enhanced Animations ===== */
+
+/* Selection pulse with spring animation */
+@keyframes selectionPulse {
+  0% {
+    outline-offset: 0px;
+    outline-width: 2px;
+    opacity: 0.6;
+  }
+  50% {
+    outline-offset: 6px;
+    outline-width: 6px;
+    opacity: 1;
+  }
+  100% {
+    outline-offset: 3px;
+    outline-width: 4px;
+    opacity: 1;
+  }
+}
+
+/* Dropdown slide-in animation */
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Improved checkmark bounce */
+@keyframes checkmarkBounce {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* ===== Context Dropdown Styles ===== */
+
+.__phoenix-context-dropdown {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 4px;
+  min-width: 200px;
+  animation: dropdownSlideIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top left;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 2147483647;
+  position: fixed;
+}
+
+.__phoenix-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f2937;
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.__phoenix-dropdown-button:hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: translateX(2px);
+}
+
+.__phoenix-dropdown-button:active {
+  background: rgba(59, 130, 246, 0.15);
+  transform: scale(0.98);
+}
+
+.__phoenix-dropdown-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #3b82f6;
+}
+
+/* Improved context added indicator */
+[data-context-added]::after {
+  animation: checkmarkBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== Glassmorphic Tooltip ===== */
+
+.__phoenix-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2147483647;
+
+  /* Glassmorphic design */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+
+  color: #1f2937;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font: 500 12px/1.3 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+
+  /* Smooth entrance */
+  animation: tooltipFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
