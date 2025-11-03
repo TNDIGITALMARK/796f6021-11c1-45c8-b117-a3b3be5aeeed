@@ -1,59 +1,73 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   TRUSTPOSITIF BOT MANAGER DESIGN SYSTEM
+   Pixel-perfect replication of design reference
+   ============================================ */
 
 :root {
-  /* Pure white background with crisp black text */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 0%;
+  /* TrustPositif Color System - Exact values from design reference */
+  --background: 220 13% 91%; /* Light gray-blue background #e5e7eb */
+  --foreground: 220 9% 12%; /* Dark text #1f2937 */
 
-  /* Clean white cards with black text */
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 0%;
+  /* Card system - White cards with shadows */
+  --card: 0 0% 100%; /* Pure white #ffffff */
+  --card-foreground: 220 9% 12%; /* Dark text #1f2937 */
 
-  /* Popovers with white background */
+  /* Popover system */
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 0%;
+  --popover-foreground: 220 9% 12%;
 
-  /* Primary: Black with white text */
-  --primary: 0 0% 0%;
-  --primary-foreground: 0 0% 100%;
+  /* Primary: Dark Navy Blue (sidebar and header) */
+  --primary: 213 63% 24%; /* #1e3a5f - exact dark blue from design */
+  --primary-foreground: 0 0% 100%; /* White text on dark blue */
 
-  /* Secondary: Light gray background with black text */
-  --secondary: 0 0% 97%;
-  --secondary-foreground: 0 0% 0%;
+  /* Secondary: Light Blue (sidebar hover state) */
+  --secondary: 205 50% 82%; /* #b8d4e8 - light blue from design */
+  --secondary-foreground: 213 63% 24%; /* Dark blue text on light blue */
 
-  /* Muted: Subtle gray with darker text */
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
+  /* Success: Green status badges */
+  --success: 142 71% 45%; /* #10b981 - exact green from AMAN status */
+  --success-foreground: 0 0% 100%; /* White text */
 
-  /* Accent: Light gray */
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 0%;
+  /* Danger: Red status badges */
+  --danger: 0 84% 60%; /* #ef4444 - exact red from MATI status */
+  --danger-foreground: 0 0% 100%; /* White text */
 
-  /* Destructive: Clean red */
-  --destructive: 0 70% 50%;
+  /* Warning: Yellow for checking states */
+  --warning: 38 92% 50%; /* #f59e0b */
+  --warning-foreground: 0 0% 100%;
+
+  /* Muted: Subtle gray backgrounds */
+  --muted: 220 13% 98%; /* #f9fafb */
+  --muted-foreground: 220 9% 42%; /* #6b7280 */
+
+  /* Accent: Primary blue for buttons */
+  --accent: 217 91% 60%; /* #3b82f6 - exact button blue */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive states */
+  --destructive: 0 84% 60%; /* Same as danger */
   --destructive-foreground: 0 0% 100%;
 
-  /* Borders: Subtle gray */
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 0%;
+  /* Borders and inputs */
+  --border: 220 13% 91%; /* #e5e7eb */
+  --input: 220 13% 91%;
+  --ring: 217 91% 60%; /* Focus ring matches accent blue */
 
-  /* Minimal rounded corners */
-  --radius: 0.375rem;
+  /* Border radius - 8px for cards, full rounded for badges */
+  --radius: 0.5rem; /* 8px */
 
-  /* Sidebar: Clean white with black text */
-  --sidebar-background: 0 0% 100%;
-  --sidebar-foreground: 0 0% 0%;
-  --sidebar-primary: 0 0% 0%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 96%;
-  --sidebar-accent-foreground: 0 0% 0%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 0 0% 0%;
+  /* Sidebar: Dark Navy Blue */
+  --sidebar-background: 213 63% 24%; /* #1e3a5f */
+  --sidebar-foreground: 0 0% 100%; /* White text */
+  --sidebar-primary: 0 0% 100%;
+  --sidebar-primary-foreground: 213 63% 24%;
+  --sidebar-accent: 205 50% 82%; /* Light blue hover */
+  --sidebar-accent-foreground: 213 63% 24%;
+  --sidebar-border: 213 63% 20%;
+  --sidebar-ring: 217 91% 60%;
 }
 
 .dark {
@@ -98,35 +112,44 @@ All colors MUST be HSL.
   --container: 1400px;
   --container-center: true;
   --container-padding: 2rem;
-  
-  /* Color System */
+
+  /* TrustPositif Color System */
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  
+
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+
+  --color-danger: hsl(var(--danger));
+  --color-danger-foreground: hsl(var(--danger-foreground));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
+
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  
+
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  
+
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  
+
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-  
+
   --color-sidebar: hsl(var(--sidebar-background));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));
   --color-sidebar-primary: hsl(var(--sidebar-primary));
@@ -135,12 +158,13 @@ All colors MUST be HSL.
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
-  
-  /* Border Radius */
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-  
+
+  /* Border Radius - matching design reference */
+  --radius-lg: 0.5rem; /* 8px - card radius */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-full: 9999px; /* Full rounded for badges */
+
   /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -168,7 +192,23 @@ All colors MUST be HSL.
   border-color: hsl(var(--border));
 }
 
+/* ============================================
+   GLOBAL STYLES - TrustPositif Bot Manager
+   ============================================ */
+
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
 body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
@@ -177,19 +217,92 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Minimal, clean typography */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  letter-spacing: -0.025em;
+/* Typography Scale - matching design reference */
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   color: hsl(var(--foreground));
 }
 
-/* Clean button styles */
-button {
-  font-weight: 500;
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: hsl(var(--foreground));
 }
 
-/* Subtle shadows for depth */
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: hsl(var(--foreground));
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: hsl(var(--foreground));
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+}
+
+a {
+  color: hsl(var(--accent));
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Button defaults - matching design reference */
+button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Input defaults */
+input,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: hsl(var(--foreground));
+}
+
+/* Table defaults */
+table {
+  font-size: 13px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 16px;
+  background-color: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+}
+
+td {
+  padding: 12px 16px;
+  border: 1px solid hsl(var(--border));
+}
+
+/* Shadows matching design reference */
 .shadow-sm {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
@@ -199,5 +312,46 @@ button {
 }
 
 .shadow-md {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 0.12);
+}
+
+/* Status badge styles - exact replication from design */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background-color: hsl(var(--success));
+  color: hsl(var(--success-foreground));
+}
+
+.badge-danger {
+  background-color: hsl(var(--danger));
+  color: hsl(var(--danger-foreground));
+}
+
+.badge-warning {
+  background-color: hsl(var(--warning));
+  color: hsl(var(--warning-foreground));
+}
+
+/* Card component defaults */
+.card {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
 }
